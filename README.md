@@ -7,6 +7,7 @@ El proyecto permite registrar, consultar y organizar (filtrar) la información p
 - Fecha.
 - Hora.
 - Precio.
+  
 Añadido a esto, se tomó una muestra pequeña de 20 vuelos de distintas aerolíneas con el mismo destino (Cuidad de México -> Cancún). Se le permitirá al usuario filtrar los vuelos a este destino por medio de los atributos mencionados anteriormente (solo valores numéricos), para encontrar el vuelo que mejor se acomode a sus necesidades.
 
 ## SICT0301 Evalúa los componentes
