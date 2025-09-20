@@ -38,7 +38,9 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
-    Se eligió std::sort por rendimiento O(nlogn), robustez y simplicidad ya que evita implementar un sort propio. Se ordena una copia para mostrar sin modificar el estado. Se utilizan omparadores estáticos (cmpPrecioAsc/Desc) compatibles con std::sort, además, es fácil de cambiar el criterio o usar std::stable_sort si se necesita estabilidad.
+    Se eligió std::sort por rendimiento O(nlogn), robustez y simplicidad, haciendolo correcto para este problema.
+    Se ordena una copia para mostrar sin modificar el estado, ya que actua más como un filtro de datos, al querer regresar al estado original despues de su uso. 
+    Se utilizan omparadores estáticos (cmpPrecioAsc/Desc) compatibles con std::sort, para poder filtrar de forma ascendente y descendente los precios de los vuelos, además, es fácil de cambiar el criterio de comparación o usar std::stable_sort si se necesita estabilidad.
 
 ### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
 
