@@ -10,6 +10,7 @@ El proyecto permite registrar, consultar y organizar (filtrar) la información p
   
 Añadido a esto, se tomó una muestra pequeña de 20 vuelos de distintas aerolíneas con el mismo destino (Cuidad de México -> Cancún). Se le permitirá al usuario filtrar los vuelos a este destino por medio de los atributos mencionados anteriormente (solo valores numéricos), para encontrar el vuelo que mejor se acomode a sus necesidades.
 
+
 ## SICT0301 Evalúa los componentes
 
 ### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
@@ -31,6 +32,26 @@ Añadido a esto, se tomó una muestra pequeña de 20 vuelos de distintas aerolí
 ### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta
 
 ### Implementa mecanismos de escritura de archivos para guardar los datos  de las estructuras de manera correcta
+
+
+## Consideraciones
+El programa solo corre en la consola y esta hecho con c++ standard por lo que corre en todos los sistemas operativos
+
+compilar con: "g++ Vuelo.h Vuelos.h main.cpp"
+
+correr en linux: "/a.out"
+
+correr en windows: "a.exe"
+
+
+## Referencias a APIs extras para el proyecto.
+
+- std::sort // Ordena el rango (firts, last) en un tiempo de O(n log n). En el proyecto se utiliza con un comparador binario para ordenar de manera ascendente y descendente dependiendo del comparador. cppreference. https://en.cppreference.com/w/cpp/algorithm/sort.html
+
+- static // Se utiliza para poder desarrollar correctamnete el sort en el programa. Al determinarlo como static ya no queda como un metodo que debe ser llamado por un objeto y std::sort puede usarlo correctamente. geeksforgeeks. https://www.geeksforgeeks.org/cpp/static-keyword-cpp/
+
+- pushback() // Se utiiza para agregar un nuevo objeto dentro del vector, al final del mismo. cplusplus. https://cplusplus.com/reference/vector/vector/push_back/
+
 
 
 
