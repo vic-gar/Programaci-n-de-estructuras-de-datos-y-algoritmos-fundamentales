@@ -18,15 +18,10 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
 ### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
 
     En el sistema, los vuelos se almacenan en un vector y se muestran ordenados por precio mediante std::sort con comparadores estáticos (cmpPrecioAsc/cmpPrecioDesc) dentro del método ordenarPorPrecio.
-    
     Algoritmo efectivo: std::sort implementa introsort (quick sort + heap sort + insertion sort).
-    
     Complejidad temporal: O(nlogn) en promedio y también en el peor caso a heap sort. El costo extra por copiar el vector antes de ordenar es O(n), por lo que el total sigue dominado por O(nlogn).
-    
     Complejidad espacial: O(n) por la copia voluntaria (para no cambiar el estado del vector original).
-    
     Estabilidad: std::sort no es estable, si se requiriera preservar orden entre precios iguales, se puede sustituir por std::stable_sort.
-    
     Con esto, el ordenamiento cumple los requisitos de rendimiento y simplicidad del proyecto.
 
 ### Hace un análisis de complejidad correcto y completo todas las estructuras de datos y cada uno de sus usos en el programa
