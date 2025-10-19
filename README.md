@@ -26,6 +26,16 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
 
 ### Hace un análisis de complejidad correcto y completo todas las estructuras de datos y cada uno de sus usos en el programa
 
+  - Arbol AVL:
+  Utilizamos un AVL para guardar los datos de los vuelos, insertar nuevos y eliminar. Con una complejidad espacial de O(n)
+    Inserción -> se utiliza al cargar los datos del csv con una complejidad de tiempo de O(log n). Además de insterar nuevos valores.
+    Eliminación -> se utiliza al eliminar vuelos del AVL con una complejidad de tiempo de O(log n).
+    Rotaciones -> se utilizan para mantener el AVL estable (no degenerado) con una complejidad de tiempo O(1) cada uno.
+
+  - Vector: 
+  Utilizamos el vector para ordenar de manera ascedente y descendente los valores guardados en el AVL, generando una copia de los valores almacenados.
+    Carga -> se insertan los valores del csv de manera secuencial con una complejidad de tiempo O(n).
+
 ### Hace un análisis de complejidad correcto y completo para todos los demás componentes del programa y determina la complejidad final del programa.
 
 
@@ -38,13 +48,20 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
     Se utilizan omparadores estáticos (cmpPrecioAsc/Desc) compatibles con std::sort, para poder filtrar de forma ascendente y descendente los precios de los vuelos, además, es fácil de cambiar el criterio de comparación o usar std::stable_sort si se necesita estabilidad.
 
 ### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
-
+  
+  Se eligió como estructura principal un árbol AVL para gestionar el conjunto de vuelos de manera más eficiente cuando se requieren busquedas, inserciones o eliminaciones.
+  Además, garantiza tiempos de operación O(log n) en estas acciones, volviendolo lo más eficiente posible.
+  Perimite consultas y actualizaciones rápidas sin la necesidad de recorrer todos los valores dentro de nuestro sistema mejorando significativamente el rendimiento. 
 
 ## SICT0303 Implementa acciones científicas
 
 ### Implementa mecanismos para consultar información de las estructras correctos
 
+  Se implementaron mecanismos para la consulta de la información por medio de metodos de busqueda, inserción y eliminación en la estuctura del árbol AVL, cargado de valores externs presentes en un documento csv. Esta elección responde a la necesidad de realizar consultas rápidas sin la necesidad de recorrer todo el conjunto de datos dentro de nuestra estructura, aportando eficiencia y robustez cumpliendo el criterio de tomar desiciones informadas al seleccionar estructuras adecuadas al problema. 
+
 ### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta
+
+  El programa implementa mecanismos de carga de información al realizar la lectura y carga automática del archivo csv, convirtiendo los datos a sus tipos adecuados y generando objetos de tipo vuelo, instertandolos en nuestra estructura y garantizando una carga correcta de datos. Esto se puede visualizar en el metodo cargaCSV() donde se llevan a cabo estas acciones.
 
 ### Implementa mecanismos de escritura de archivos para guardar los datos  de las estructuras de manera correcta
 
@@ -58,6 +75,8 @@ correr en linux: "/a.out"
 
 correr en windows: "a.exe"
 
+Todos los archivos deben de estar presentes en la misma carpeta o el programa no compilará correctamente.
+
 
 ## Referencias a APIs extras para el proyecto.
 
@@ -67,7 +86,11 @@ correr en windows: "a.exe"
 
 - pushback() // Se utiiza para agregar un nuevo objeto dentro del vector, al final del mismo. cplusplus. https://cplusplus.com/reference/vector/vector/push_back/
 
+- std::stoi // Convierte de string a entero. cplusplus. https://cplusplus.com/reference/string/stoi/
 
+- std::stod // Convierte de string a double. cplusplus. https://cplusplus.com/reference/string/stod/
+
+- emplace_back // Insterta un nuevo elemento al final de un  vector, donde el elemento se construye en el lugar con su constructor. cplusplus. https://cplusplus.com/reference/vector/vector/emplace_back/
 
 
 
