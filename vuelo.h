@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 
 class Vuelo {
   private:
@@ -31,6 +32,7 @@ class Vuelo {
   public:
     //Constructores de la clase Vuelo
     Vuelo() : id(0), precio(0.0) {}
+
     Vuelo(int _id, const std::string &f, const std::string &o, const std::string &d,
     const std::string &s, const std::string &l, const std::string &a, double p):
      id(_id), fecha(f), origen(o), destino(d), sale(s), llega(l), aerolinea(a), 
@@ -48,16 +50,47 @@ class Vuelo {
 
     // Métodos de la clase Vuelo
     std::string conv_str() const;
+
+    bool operator<(const Vuelo& other) const;
+    bool operator>(const Vuelo& other) const;
+    bool operator==(const Vuelo& other) const; 
+
+    friend std::ostream& operator<<(std::ostream& os, const Vuelo& v);
 };
 
 //Metdo para imprimir los datos de un vuelo.
 std::string Vuelo::conv_str() const {
     std::stringstream ss;
     ss << "\nVuelo || ID: " << id << "\nFecha -> " << fecha << "\nOrigen -> " << origen
-    << "\nDestino -> " << destino << "\nSale -> " << sale << "\nLlega -> " << llega
-    << "\nAerolínea -> " << aerolinea << "\nPrecio -> $" << std::fixed << 
-    std::setprecision(2) << precio; return ss.str();
+      << "\nDestino -> " << destino << "\nSale -> " << sale << "\nLlega -> " << llega
+      << "\nAerolínea -> " << aerolinea << "\nPrecio -> $" << std::fixed << 
+      std::setprecision(2) << precio; 
+    return ss.str();
 }
+
+bool Vuelo::operator<(const Vuelo& other) const {
+  if (precio == other.precio){
+    return id < other.id;
+  } 
+  return precio < other.precio;
+}
+
+bool Vuelo::operator>(const Vuelo& other) const {
+  if (precio == other.precio) {
+    return id > other.id;
+  }
+  return precio > other.precio;
+}
+
+bool Vuelo::operator==(const Vuelo& other) const {
+  return id == other.id;
+}
+
+std::ostream& operator<<(std::ostream& os, const Vuelo& v) {
+  return os << v.conv_str();
+}
+
+
 
 #endif //VUELO_H
 
