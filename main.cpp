@@ -27,7 +27,8 @@ static void menu() {
     std::cout << "3. Ordenar descendente (precio)\n";
     std::cout << "4. Agregar un vuelo\n";
     std::cout << "5. Eliminar un vuelo (por ID)\n";
-    std::cout << "6. Salir\n";
+    std::cout << "6. Buscar vuelo por ID\n";
+    std::cout << "7. Salir (se guardará el nuevo csv)\n";
     std::cout << "\n Elige una opcion: ";
 }
 
@@ -61,6 +62,21 @@ int main() {
             }
         } 
         else if (opcion == 6) {
+            int id;
+            std::cout << "ID del vuelo a buscar: ";
+            std::cin >> id;
+
+            Vuelo encontrado(0, "", "", "", "", "", "", 0);
+
+            if (sistema.buscarPorID(id, encontrado)) {
+                std::cout << "\n--- Vuelo encontrado ---\n";
+                std::cout << encontrado << "\n";
+            } else {
+                std::cout << "No existe un vuelo con ese ID.\n";
+            }
+        }
+        else if (opcion == 7) {
+            sistema.guardarCSV();
             std::cout << "Saliendo...\n";
             break;
         } 
