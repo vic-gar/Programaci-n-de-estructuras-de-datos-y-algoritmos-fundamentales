@@ -10,7 +10,7 @@ El proyecto permite registrar, consultar y organizar (filtrar) la información p
 - Aerolínea.
 - Origen y destino.
   
-Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolíneas con el mismo destino (Cuidad de México -> Cancún). Se le permitirá al usuario filtrar los vuelos a este destino por medio del atributo de precio, para encontrar el vuelo que mejor se acomode a sus necesidades.
+Añadido a esto, se tomó una muestra pequeña de 20 vuelos de distintas aerolíneas con el mismo destino (Cuidad de México -> Cancún). Se le permitirá al usuario filtrar los vuelos a este destino por medio del atributo de precio, de forma ascendente o descendente para encontrar el que mejor se acomode a sus necesidades. Se pueden agregar, eliminar y buscar vuelos (por medio de ID).
 
 
 ## SICT0301 Evalúa los componentes
@@ -27,16 +27,30 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
 ### Hace un análisis de complejidad correcto y completo todas las estructuras de datos y cada uno de sus usos en el programa
 
   - Arbol AVL:
-  Utilizamos un AVL para guardar los datos de los vuelos, insertar nuevos y eliminar. Con una complejidad espacial de O(n)
-    Inserción -> se utiliza al cargar los datos del csv con una complejidad de tiempo de O(log n). Además de insterar nuevos valores.
-    Eliminación -> se utiliza al eliminar vuelos del AVL con una complejidad de tiempo de O(log n).
-    Rotaciones -> se utilizan para mantener el AVL estable (no degenerado) con una complejidad de tiempo O(1) cada uno.
+  Se utiliza un árbol AVL para almacenar y mantener ordenados los vuelos por ID y permitir: Búsquedas rápidas de vuelos, Inserciones eficientes, Eliminaciones balanceadas
+    Inserción -> se utiliza al cargar los datos del csv con una complejidad de O(log n). Además de insterar nuevos valores.
+    Eliminación -> se utiliza al eliminar vuelos del AVL con una complejidad de O(log n).
+    Rotaciones -> se utilizan para mantener el AVL estable (no degenerado) con una complejidad de O(1) cada uno.
+    Busquedas -> se utiliza para extraer algun valor del AVL con una complejidad de O(log n)
+    Espacio -> En cuanto al espacio tenemos una complejidad de O(n) ya que se guarda un nodo por cada vuelo.
 
   - Vector: 
-  Utilizamos el vector para ordenar de manera ascedente y descendente los valores guardados en el AVL, generando una copia de los valores almacenados.
+  Utilizamos el vector para ordenar de manera ascedente y descendente los valores guardados en el AVL.
     Carga -> se insertan los valores del csv de manera secuencial con una complejidad de tiempo O(n).
+    Copia -> se genera una copia para ordenar los vuelos, con una complejidad de O(n).
 
 ### Hace un análisis de complejidad correcto y completo para todos los demás componentes del programa y determina la complejidad final del programa.
+
+Carga de CSV: lee línea por línea, convierte los campos y construye objetos Vuelo.
+  Complejidad de O(n)
+
+Guardar el CSV: recorre el vector y escribe al archivo.
+  Complejidad de O(n)
+
+Mostrar vuelos: Despliega los elementos del vector.
+  Complejidad de O(n)
+
+En base a todas las complejidades en nuestro programa, podemos inidcar que este tiene una complejidad final de O(n log n) debido al ordenamineto de los vuelos, aunque la mayoria de estructuras y algoritmos cuenten con una complejidad de O(n) o O(log n).
 
 
 ## SICT0302 Toma decisiones
@@ -65,6 +79,7 @@ Añadido a esto, se tomó una muestra pequeña de 12 vuelos de distintas aerolí
 
 ### Implementa mecanismos de escritura de archivos para guardar los datos  de las estructuras de manera correcta
 
+  El programa ofrece funcionalidad completa de escritura mediante el método guardarCSV() que recorre el vector listaCSV, escribe un archivo CSV válido, sobrescribe el archivo original para mantener consistencia y maneja correctamente la conversión de tipos y el orden del formato. Garantizando que las inserciones y eliminaciones realizadas por el usuario persisten y que los datos guardados siguen un formato estándar reutilizable.
 
 ## Consideraciones
 El programa solo corre en la consola y esta hecho con c++ standard por lo que corre en todos los sistemas operativos
