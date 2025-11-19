@@ -69,17 +69,11 @@ std::string Vuelo::conv_str() const {
 }
 
 bool Vuelo::operator<(const Vuelo& other) const {
-  if (precio == other.precio){
-    return id < other.id;
-  } 
-  return precio < other.precio;
+  return id < other.id;
 }
 
 bool Vuelo::operator>(const Vuelo& other) const {
-  if (precio == other.precio) {
-    return id > other.id;
-  }
-  return precio > other.precio;
+  return id > other.id;
 }
 
 bool Vuelo::operator==(const Vuelo& other) const {
