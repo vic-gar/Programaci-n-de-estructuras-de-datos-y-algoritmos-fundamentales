@@ -10,6 +10,7 @@
     de ordenamiento y además en un AVL para la posterior busqueda, acceso, 
     inserción y borrado de vuelos.
 */
+
 #ifndef VUELOS_H_
 #define VUELOS_H_
 
@@ -21,6 +22,22 @@
 #include "vuelo.h"
 #include "avl.h"
 
+//Métodos fuera de la clase para el uso de std::sort por precio
+
+//Metodo que funciona como helper para comparar por precio no por ID (Ascendente)
+bool compararAsc(const Vuelo &a, const Vuelo &b) {
+    if (a.get_precio() == b.get_precio())
+        return a.get_id() < b.get_id();
+    return a.get_precio() < b.get_precio();
+}
+
+//Metodo que funciona como helper para comparar por precio no por ID (Descendente)
+bool compararDesc(const Vuelo &a, const Vuelo &b) {
+    if (a.get_precio() == b.get_precio())
+        return a.get_id() > b.get_id();
+    return a.get_precio() > b.get_precio();
+}
+
 class Vuelos {
   private:
     AVL<Vuelo> avl;
@@ -31,6 +48,7 @@ class Vuelos {
     Vuelos();
 
     void cargarCSV();
+    void guardarCSV() const;
 
     //Métodos de la clase Vuelos
     void mostrarOriginal() const;
@@ -39,6 +57,8 @@ class Vuelos {
 
     void agregarVuelo();
     bool eliminarVuelo();
+
+    bool buscarPorID(int id, Vuelo &r) const;
 };
 
 //Constructor por default de la clase Vuelos
@@ -78,6 +98,25 @@ void Vuelos::cargarCSV() {
     std::cout << "Cargados " << listaCSV.size() << " vuelos.\n";
 }
 
+//Método para guardar los vuelos en un nuevo csv
+void Vuelos::guardarCSV() const {
+    std::ofstream file("vuelos.csv");
+
+    for (const auto &v : listaCSV) {
+        file << v.get_id()        << ","
+             << v.get_fecha()     << ","
+             << v.get_origen()    << ","
+             << v.get_destino()   << ","
+             << v.get_sale()      << ","
+             << v.get_llega()     << ","
+             << v.get_aerolinea() << ","
+             << v.get_precio()    << "\n";
+    }
+
+    file.close();
+    std::cout << "Guardados " << listaCSV.size() << " vuelos en 'vuelos.csv'.\n";
+}
+
 //Metodo para mostrar los vuelos guardados en el CSV
 void Vuelos::mostrarOriginal() const {
   std::cout << "\n--- Vuelos en el sistema ---\n";
@@ -92,7 +131,7 @@ void Vuelos::ordenarAsc() const{
   std::cout << "\n--- Vuelos por precio ascendente ---\n";
   std::vector<Vuelo> copia = listaCSV;
 
-  std::sort(copia.begin(), copia.end());
+  std::sort(copia.begin(), copia.end(), compararAsc);
 
   for (const auto &v : copia) {
     std::cout << v << "\n";
@@ -104,7 +143,7 @@ void Vuelos::ordenarDesc() const{
   std::cout << "\n--- Vuelos por precio descendente ---\n";
   std::vector<Vuelo> copia = listaCSV;
 
-  std::sort(copia.begin(), copia.end(), std::greater<Vuelo>());
+  std::sort(copia.begin(), copia.end(), compararDesc);
 
   for (const auto &v : copia) {
     std::cout << v << "\n";
@@ -113,23 +152,34 @@ void Vuelos::ordenarDesc() const{
 
 //Metodo para agregar un nuevo Vuelo a nuestro AVL y al vector auxiliar para ordenar
 void Vuelos::agregarVuelo() {
-  int id; std::string fecha, origen, destino, sale, llega, aerolinea; double precio;
+  int id; 
+  std::string fecha, origen, destino, sale, llega, aerolinea; 
+  double precio;
 
-  std::cout << "ID: "; 
+  std::cout << "ID del vuelo: ";
   std::cin >> id;
-  std::cout << "Fecha (dd/mm/aaaa): "; 
-  std::cin >> fecha;
-  std::cout << "Origen: "; 
-  std::cin >> origen;
-  std::cout << "Destino: "; 
-  std::cin >> destino;
-  std::cout << "Sale (hh:mm): "; 
-  std::cin >> sale;
-  std::cout << "Llega (hh:mm): "; 
-  std::cin >> llega;
-  std::cout << "Aerolínea: "; 
-  std::cin >> aerolinea;
-  std::cout << "Precio: "; 
+
+  std::cin.ignore();
+
+  std::cout << "Fecha (DD/MM/YYYY): ";
+  std::getline(std::cin, fecha);
+
+  std::cout << "Origen: ";
+  std::getline(std::cin, origen);
+
+  std::cout << "Destino: ";
+  std::getline(std::cin, destino);
+
+  std::cout << "Hora de salida (HH:MM): ";
+  std::getline(std::cin, sale);
+
+  std::cout << "Hora de llegada (HH:MM): ";
+  std::getline(std::cin, llega);
+
+  std::cout << "Aerolinea: ";
+  std::getline(std::cin, aerolinea);
+
+  std::cout << "Precio: ";
   std::cin >> precio;
 
   Vuelo v(id, fecha, origen, destino, sale, llega, aerolinea, precio);
@@ -157,5 +207,19 @@ bool Vuelos::eliminarVuelo() {
   return false;
 }
 
+//Metodo que busca un vuelo por medio de su ID
+bool Vuelos::buscarPorID(int id, Vuelo &r) const {
+    Vuelo node(id, "", "", "", "", "", "", 0);
+    const Vuelo* ptr = avl.get(node);
+
+    if (ptr == 0) {
+        return false;
+    }
+
+    r = *ptr;
+    return true;
+}
+
 
 #endif // VUELOS_H_
+
