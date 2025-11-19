@@ -75,7 +75,7 @@ correr en linux: "/a.out"
 
 correr en windows: "a.exe"
 
-Todos los archivos deben de estar presentes en la misma carpeta o el programa no compilará correctamente.
+Todos los archivos deben de estar presentes en la misma carpeta o el programa no compilará correctamente. Además, el documento .csv debe de estar cerrado para que los datos se almacenen correctamente (Guardar los datos nuevos).
 
 
 ## Referencias a APIs extras para el proyecto.
