@@ -34,6 +34,7 @@ public:
 	Node<T>* rot_right(Node<T>* );
 	Node<T>* rot_left_right(Node<T>* );
 	Node<T>* rot_right_left(Node<T>* );
+	const T* get(T) const;
 	friend class AVL<T>;
 };
 
@@ -294,6 +295,18 @@ Node<T>*  Node<T>::rot_right_left(Node<T>* a){
 }
 
 template <class T>
+const T* Node<T>::get(T val) const {
+    if (val == value) {
+        return &value;
+    } else if (val < value) {
+        return (left != 0) ? left->get(val) : nullptr;
+    } else if (val > value) {
+        return (right != 0) ? right->get(val) : nullptr;
+    }
+    return nullptr;
+}
+
+template <class T>
 class AVL {
 private:
 	Node<T> *root;
@@ -306,6 +319,7 @@ public:
 	bool find(T) const;
 	void remove(T);
 	void removeAll();
+	const T* get(T) const;
 };
 
 template <class T>
@@ -385,6 +399,15 @@ bool AVL<T>::find(T val) const {
 	} else {
 		return false;
 	}
+}
+
+//Metodo extra para clase AVL para obtener el objeto almacendo en un nodo
+template <class T>
+const T* AVL<T>::get(T val) const {
+    if (root == 0) {
+        return nullptr;
+    }
+    return root->get(val);
 }
 
 #endif /* AVL_H_ */
