@@ -95,6 +95,8 @@ Todos los archivos deben de estar presentes en la misma carpeta o el programa no
 
 ## Referencias a APIs extras para el proyecto.
 
+- Big-O Cheat Sheet. Know Thy Complexities!. // Utilizado para generar el análisis de complejidad del proyecto. https://www.bigocheatsheet.com/ 
+
 - std::sort // Ordena el rango (firts, last) en un tiempo de O(n log n). En el proyecto se utiliza con un comparador binario para ordenar de manera ascendente y descendente dependiendo del comparador. cppreference. https://en.cppreference.com/w/cpp/algorithm/sort.html
 
 - static // Se utiliza para poder desarrollar correctamnete el sort en el programa. Al determinarlo como static ya no queda como un metodo que debe ser llamado por un objeto y std::sort puede usarlo correctamente. geeksforgeeks. https://www.geeksforgeeks.org/cpp/static-keyword-cpp/
